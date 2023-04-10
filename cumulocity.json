@@ -2,6 +2,6 @@
     "name": "angularApp",
     "version": "1.0.1",
     "description": "This is a demo app for c8y",
-    "contextPath": "angularApp",
+    "contextPath": "angular-App",
     "key": "c8y-angular-application-key"
 }
