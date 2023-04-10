@@ -7,7 +7,8 @@
     "build": "ng build",
     "deploy": "c8ycli deploy -u https://env555200.eu-latest.cumulocity.com -U post2mohankiran@gmail.com -P Mohan@kiran12 dist",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test --watch=false --browsers=ChromeHeadles"
+
   },
   "private": true,
   "dependencies": {

@@ -30,5 +30,5 @@ jobs:
     - run: npm run build --if-present
     - run: copy cumulocity.json dist
     - run: ls
-    - run: ng test --watch=false --browsers=ChromeHeadless
+    - run: npm test
     - run: npm run deploy
