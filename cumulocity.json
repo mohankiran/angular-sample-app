@@ -1,0 +1,7 @@
+{   "author": "Mohan Pathapata",
+    "name": "MyAngularApp",
+    "version": "1.0.1",
+    "description": "This is a demo app for c8y",
+    "contextPath": "my-angular-app-mohan",
+    "key": "c8y-app-application-key-mohan"
+}
