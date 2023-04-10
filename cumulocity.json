@@ -1,7 +1,7 @@
 {   "author": "Mohan Pathapata",
-    "name": "angularApp",
+    "name": "commercialPool",
     "version": "1.0.1",
-    "description": "This is a demo app for c8y",
-    "contextPath": "angular-App",
+    "description": "Comercial Pool",
+    "contextPath": "commercial-pool",
     "key": "c8y-angular-application-key"
 }
