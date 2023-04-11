@@ -20,6 +20,9 @@ jobs:
         node-version: [14.x]
 
     steps:
+    - name: My Secrets
+      env:
+        TENANT: ${{ secrets.TENANT_URL }}
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
@@ -29,8 +32,8 @@ jobs:
     # - run: npm i
     - name: Loging
       run: |
-        echo ***** ${{ secrets.TENANT_URL }}
-        echo "***** test *****"
+        echo ***** ${{ secrets.TENANT_URL }}****
+        echo "***** $TENANT *****"
     # - run: npm install -g @c8y/cli
     # - run: npm run build --if-present
     # - run: copy cumulocity.json dist
