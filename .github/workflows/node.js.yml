@@ -35,6 +35,7 @@ jobs:
     - name: Copy build folder contents to the dist folder
       run: |
         mv dist/login-app/* dist/
+        rm -r login-app
     - run: ls
     # - name: Copy build folder contents to the dist folder
     #   run: |
