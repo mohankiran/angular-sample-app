@@ -24,7 +24,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-#         cache: 'npm'
+        cache: 'npm'
     - run: npm i
     - run: npm install -g @c8y/cli
     - run: npm run build --if-present
@@ -42,3 +42,4 @@ jobs:
        else
           echo "Deploy to Master"
           c8ycli deploy -u https://env320490.eu-latest.cumulocity.com -U NewUser -P abcdABCD@1234 dist
+        fi
