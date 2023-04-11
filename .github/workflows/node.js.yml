@@ -5,10 +5,9 @@ name: Node.js CI
 on:
   push:
     branches:
-      - main
       - dev
   pull_request:
-    branches: [ "main", "dev" ]
+    branches: [ "dev" ]
 
 jobs:
   build:
@@ -28,17 +27,10 @@ jobs:
     - run: npm i
     - run: npm install -g @c8y/cli
     - run: npm run build --if-present
-    - run: ls
     - run: copy cumulocity.json dist
-    - run: ls
     - name: Copy build folder contents to the dist folder
       run: |
         mv dist/login-app/* dist/
-        rm -r login-app
-    - run: ls
-    # - name: Copy build folder contents to the dist folder
-    #   run: |
-    #     cp -R dist/login-app/. dist/
-    # - run: ls
+        rm -r dist/login-app
     - run: npm test
-    - run: npm run deploy
+    - run: c8ycli deploy -u https://env320490.eu-latest.cumulocity.com -U NewUser -P abcdABCD@1234 dist
