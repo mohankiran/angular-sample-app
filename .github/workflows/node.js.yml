@@ -5,9 +5,10 @@ name: Node.js CI
 on:
   push:
     branches:
+      - main
       - dev
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "main", "dev" ]
 
 jobs:
   build:
@@ -33,4 +34,14 @@ jobs:
         mv dist/login-app/* dist/
         rm -r dist/login-app
     - run: npm test
-    - run: c8ycli deploy -u https://env320490.eu-latest.cumulocity.com -U NewUser -P abcdABCD@1234 dist
+    - run: |
+        if [ ${{ github.ref }} == 'refs/heads/main' ]; then
+          echo "Branch Name ******* ${{ github.ref }}"
+          echo "Deploy to Main"
+          c8ycli deploy -u https://env555200.eu-latest.cumulocity.com -U post2mohankiran@gmail.com -P Mohan@kiran12 dist
+        else
+          echo "Branch Name ******* ${{ github.ref }}"
+          echo "Deploy to Dev"
+          c8ycli deploy -u https://env320490.eu-latest.cumulocity.com -U NewUser -P abcdABCD@1234 dist
+        fi
+      shell: bash
