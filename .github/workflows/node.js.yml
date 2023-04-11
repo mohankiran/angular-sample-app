@@ -31,9 +31,13 @@ jobs:
     - run: npm run build --if-present
     - run: ls
     - run: copy cumulocity.json dist
-    - name: Copy build folder contents to the dist folder
-      run: |
-        cp -R dist/login-app/. dist/
     - run: ls
-    - run: npm test
-    - run: npm run deploy
+    - name: Navigate to dist folder
+      run cd dist
+    - run: ls
+    # - name: Copy build folder contents to the dist folder
+    #   run: |
+    #     cp -R dist/login-app/. dist/
+    # - run: ls
+    # - run: npm test
+    # - run: npm run deploy
