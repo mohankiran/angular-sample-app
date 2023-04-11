@@ -34,7 +34,8 @@ jobs:
         mv dist/login-app/* dist/
         rm -r dist/login-app
     - run: npm test
-    - run: |
+    - name: Validate the branch and deploy
+      run: |
         if [ ${{ github.ref }} == 'refs/heads/main' ]; then
           echo "Branch Name ******* ${{ github.ref }}"
           echo "Deploy to Main"
