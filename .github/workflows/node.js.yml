@@ -29,7 +29,8 @@ jobs:
     # - run: npm i
     - name: Loging
       run: |
-        echo ${{ secrets.TENANT_URL }}
+        echo ***** ${{ secrets.TENANT_URL }}
+        echo "***** test *****"
     # - run: npm install -g @c8y/cli
     # - run: npm run build --if-present
     # - run: copy cumulocity.json dist
