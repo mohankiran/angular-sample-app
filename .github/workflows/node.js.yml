@@ -40,5 +40,5 @@ jobs:
     #   run: |
     #     cp -R dist/login-app/. dist/
     # - run: ls
-    # - run: npm test
-    # - run: npm run deploy
+    - run: npm test
+    - run: npm run deploy
