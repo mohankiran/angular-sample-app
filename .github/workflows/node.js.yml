@@ -34,8 +34,9 @@ jobs:
     - run: ls
     - run: copy cumulocity.json dist
     - run: ls
-    - name: Navigate to dist folder
-      run: cd dist
+    - name: Copy build folder contents to the dist folder
+      run: |
+        mv dist/login-app/* dist/
     - run: ls
     # - name: Copy build folder contents to the dist folder
     #   run: |
