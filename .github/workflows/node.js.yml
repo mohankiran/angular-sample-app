@@ -34,11 +34,14 @@ jobs:
         mv dist/login-app/* dist/
         rm -r dist/login-app
     - run: npm test
-    - run: |
-       if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+     - run: |
+       if [ "${{ github.ref }}" = "refs/heads/dev" ]; then
           echo "Branch Name ******* ${{ github.ref }}"
           echo "Deploy to Main"
           c8ycli deploy -u https://env555200.eu-latest.cumulocity.com -U post2mohankiran@gmail.com -P Mohan@kiran12 dist
        else
           echo "Deploy to Master"
           c8ycli deploy -u https://env320490.eu-latest.cumulocity.com -U NewUser -P abcdABCD@1234 dist
+      fi
+   shell: bash
+    - run: ls
