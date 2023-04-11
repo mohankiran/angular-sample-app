@@ -35,11 +35,14 @@ jobs:
     - name: Copy build folder contents to the dist folder
       run: |
         mv dist/login-app/* dist/
-        rm -r login-app
+        rm -r dist/login-app
     - run: ls
-    # - name: Copy build folder contents to the dist folder
-    #   run: |
-    #     cp -R dist/login-app/. dist/
-    # - run: ls
     - run: npm test
+    - run: |
+       if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+         echo "Deploy to Main"
+          c8ycli deploy -u https://env555200.eu-latest.cumulocity.com -U post2mohankiran@gmail.com -P Mohan@kiran12 dist
+       else
+         echo "Deploy to Master"
+          c8ycli deploy -u https://env320490.eu-latest.cumulocity.com -U NewUser -P abcdABCD@1234 dist
     - run: npm run deploy
