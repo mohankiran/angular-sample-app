@@ -33,7 +33,7 @@ jobs:
     - run: copy cumulocity.json dist
     - run: ls
     - name: Navigate to dist folder
-      run cd dist
+      run: cd dist
     - run: ls
     # - name: Copy build folder contents to the dist folder
     #   run: |
