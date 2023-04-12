@@ -26,8 +26,10 @@ jobs:
     # - run: npm i
     - name: Loging
       run: |
-        echo "URL: ${secrets.C8Y_URL}"
-        echo "TENANT: ${secrets.TENANT_URL}"
+        env:
+          C8Y_MAIN_URL: ${{ secrets.C8Y_MAIN_URL }}
+          C8Y_MAIN_USERNAME: ${{ secrets.C8Y_MAIN_USERNAME }}
+          C8Y_MAIN_PWD: ${{ secrets.C8Y_MAIN_PWD }}
     # - run: npm install -g @c8y/cli
     # - run: npm run build --if-present
     # - run: copy cumulocity.json dist
