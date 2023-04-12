@@ -26,7 +26,8 @@ jobs:
     # - run: npm i
     - name: Loging
       run: |
-        echo ***** ${{ secrets.C8Y_URL }}****
+        echo ***** ${secrets.C8Y_URL}****
+        echo ***** ${secrets.TENANT_URL}****
         echo "***** TENANT *****"
     # - run: npm install -g @c8y/cli
     # - run: npm run build --if-present
