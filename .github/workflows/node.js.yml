@@ -1,8 +1,6 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Node.js CI
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -24,7 +22,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-#         cache: 'npm'
+        cache: 'npm'
     - run: npm i
     - run: npm install -g @c8y/cli
     - run: npm run build --if-present
@@ -39,10 +37,9 @@ jobs:
         if [ ${{ github.ref }} == 'refs/heads/main' ]; then
           echo "Branch Name ******* ${{ github.ref }}"
           echo "Deploy to Main"
-          c8ycli deploy -u https://env555200.eu-latest.cumulocity.com -U post2mohankiran@gmail.com -P Mohan@kiran12 dist
+          c8ycli deploy -u ${{ secrets.C8Y_MAIN_URL }} -U ${{ secrets.C8Y_MAIN_USERNAME }} -P ${{ secrets.C8Y_MAIN_PWD }} dist
         else
-          echo "Branch Name ******* ${{ github.ref }}"
-          echo "Deploy to Dev"
-          c8ycli deploy -u https://env320490.eu-latest.cumulocity.com -U NewUser -P abcdABCD@1234 dist
+          echo "Deploy to Master"
+          c8ycli deploy -u ${{ secrets.C8Y_DEV_URL }} -U C8Y_DEV_USERNAME -P C8Y_DEV_PWD dist
         fi
       shell: bash
