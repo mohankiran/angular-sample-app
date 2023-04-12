@@ -37,7 +37,7 @@ jobs:
         if [ ${{ github.ref }} == 'refs/heads/main' ]; then
           echo "Branch Name ******* ${{ github.ref }}"
           echo "Deploy to Main"
-          c8ycli deploy -u ${{ secrets.C8Y_MAIN_URL }} -U ${{ secrets.C8Y_USERNAME }} -P ${{ secrets.C8Y_MAIN_PWD }} dist
+          c8ycli deploy -u ${{ secrets.C8Y_MAIN_URL }} -U ${{ secrets.C8Y_MAIN_USERNAME }} -P ${{ secrets.C8Y_MAIN_PWD }} dist
         else
           echo "Deploy to Master"
           c8ycli deploy -u ${{ secrets.C8Y_DEV_URL }} -U C8Y_DEV_USERNAME -P C8Y_DEV_PWD dist
