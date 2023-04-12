@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [14.x, 16.x]
 
     steps:
     - uses: actions/checkout@v3
@@ -23,29 +23,23 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    # - run: npm i
-    - name: Loging
+    - run: npm i
+    - run: npm install -g @c8y/cli
+    - run: npm run build --if-present
+    - run: copy cumulocity.json dist
+    - name: Copy build folder contents to the dist folder
       run: |
-        env:
-          C8Y_MAIN_URL: ${{ secrets.C8Y_MAIN_URL }}
-          C8Y_MAIN_USERNAME: ${{ secrets.C8Y_MAIN_USERNAME }}
-          C8Y_MAIN_PWD: ${{ secrets.C8Y_MAIN_PWD }}
-    # - run: npm install -g @c8y/cli
-    # - run: npm run build --if-present
-    # - run: copy cumulocity.json dist
-    # - name: Copy build folder contents to the dist folder
-    #   run: |
-    #     mv dist/login-app/* dist/
-    #     rm -r dist/login-app
-    # - run: npm test
-    # - name: Validate the branch and deploy
-    #   run: |
-    #     if [ ${{ github.ref }} == 'refs/heads/main' ]; then
-    #       echo "Branch Name ******* ${{ github.ref }}"
-    #       echo "Deploy to Main"
-    #       c8ycli deploy -u https://env555200.eu-latest.cumulocity.com -U post2mohankiran@gmail.com -P Mohan@kiran12 dist
-    #     else
-    #       echo "Deploy to Master"
-    #       c8ycli deploy -u https://env320490.eu-latest.cumulocity.com -U NewUser -P abcdABCD@1234 dist
-    #     fi
-    #   shell: bash
+        mv dist/login-app/* dist/
+        rm -r dist/login-app
+    - run: npm test
+    - name: Validate the branch and deploy
+      run: |
+        if [ ${{ github.ref }} == 'refs/heads/main' ]; then
+          echo "Branch Name ******* ${{ github.ref }}"
+          echo "Deploy to Main"
+          c8ycli deploy -u ${{ secrets.C8Y_MAIN_URL }} -U ${{ secrets.C8Y_USERNAME }} -P ${{ secrets.C8Y_MAIN_PWD }} dist
+        else
+          echo "Deploy to Master"
+          c8ycli deploy -u ${{ secrets.C8Y_DEV_URL }} -U C8Y_DEV_USERNAME -P C8Y_DEV_PWD dist
+        fi
+      shell: bash
