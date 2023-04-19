@@ -28,6 +28,10 @@ jobs:
     - name: Show last commit email 
       run: |
         echo "Email ${{github.event.commits[0].author.email}}"
+    - name: Show commit ID 
+      run: | 
+        COMMIT_ID=$(git rev-parse HEAD) 
+        echo "Commit ID is $COMMIT_ID"
     # - name: Install c8ycli
     #   run: npm install -g @c8y/cli
     # - name: Generate Build
