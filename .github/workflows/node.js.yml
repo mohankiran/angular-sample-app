@@ -26,7 +26,9 @@ jobs:
     # - name: Install Dependencies
     #   run: npm i
     - name: Show user email
-      run: echo "My email ${{ github.event.sender.email }}"
+      run: ${{ github.event.sender.email }}
+    - name: Show user email twice
+      run: ${{ github.actor }}
     # - name: Install c8ycli
     #   run: npm install -g @c8y/cli
     # - name: Generate Build
