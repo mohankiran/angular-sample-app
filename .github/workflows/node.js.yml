@@ -26,9 +26,7 @@ jobs:
     # - name: Install Dependencies
     #   run: npm i
     - name: Show last commit email 
-      run: | 
-        LAST_COMMIT_EMAIL=$(git log -n 1 --pretty=format:%ae)
-        echo "Last commit email is $LAST_COMMIT_EMAIL"
+      run: ${{github.event.commits[0].author.email}}
     # - name: Install c8ycli
     #   run: npm install -g @c8y/cli
     # - name: Generate Build
