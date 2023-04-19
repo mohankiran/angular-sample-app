@@ -23,26 +23,28 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: Install Dependencies
-      run: npm i
-    - name: Install c8ycli
-      run: npm install -g @c8y/cli
-    - name: Generate Build
-      run: npm run build --if-present
-    - run: copy cumulocity.json dist
-    - name: Copy build folder contents to the dist folder
-      run: |
-        mv dist/login-app/* dist/
-        rm -r dist/login-app
-    - run: npm test
-    - name: Verify the branche and deploy
-      run: |
-        if [ ${{ github.ref }} == 'refs/heads/main' ]; then
-          echo "Branch Name ******* ${{ github.ref }}"
-          echo "Deploy to Main"
-          c8ycli deploy -u ${{ secrets.C8Y_MAIN_URL }} -U ${{ secrets.C8Y_MAIN_USERNAME }} -P ${{ secrets.C8Y_MAIN_PWD }} dist
-        else
-          echo "Deploy to Master"
-          c8ycli deploy -u ${{ secrets.C8Y_DEV_URL }} -U ${{ secrets.C8Y_DEV_USERNAME }} -P ${{ secrets.C8Y_DEV_PWD }} dist
-        fi
-      shell: bash
+    # - name: Install Dependencies
+    #   run: npm i
+    - name: Show user email
+      run: echo "My email ${{ github.event.sender.email }}"
+    # - name: Install c8ycli
+    #   run: npm install -g @c8y/cli
+    # - name: Generate Build
+    #   run: npm run build --if-present
+    # - run: copy cumulocity.json dist
+    # - name: Copy build folder contents to the dist folder
+    #   run: |
+    #     mv dist/login-app/* dist/
+    #     rm -r dist/login-app
+    # - run: npm test
+    # - name: Verify the branche and deploy
+    #   run: |
+    #     if [ ${{ github.ref }} == 'refs/heads/main' ]; then
+    #       echo "Branch Name ******* ${{ github.ref }}"
+    #       echo "Deploy to Main"
+    #       c8ycli deploy -u ${{ secrets.C8Y_MAIN_URL }} -U ${{ secrets.C8Y_MAIN_USERNAME }} -P ${{ secrets.C8Y_MAIN_PWD }} dist
+    #     else
+    #       echo "Deploy to Master"
+    #       c8ycli deploy -u ${{ secrets.C8Y_DEV_URL }} -U ${{ secrets.C8Y_DEV_USERNAME }} -P ${{ secrets.C8Y_DEV_PWD }} dist
+    #     fi
+    #   shell: bash
