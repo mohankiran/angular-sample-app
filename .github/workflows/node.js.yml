@@ -28,10 +28,13 @@ jobs:
     - name: Show last commit email 
       run: |
         echo "Email ${{github.event.commits[0].author.email}}"
-    - name: Show commit ID 
-      run: | 
-        COMMIT_ID=$(git rev-parse HEAD) 
-        echo "Commit ID is $COMMIT_ID"
+    - name: Set short git commit SHA
+      id: vars
+      run: |
+        calculatedSha=$(git rev-parse --short ${{ github.sha }})
+        echo "::set-output name=short_sha::$calculatedSha"
+    - name: Confirm git commit SHA output
+      run: echo ${{ steps.vars.outputs.short_sha }}
     # - name: Install c8ycli
     #   run: npm install -g @c8y/cli
     # - name: Generate Build
